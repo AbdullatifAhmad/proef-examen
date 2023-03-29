@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\persoon;
 use Illuminate\Http\Request;
+use Illuminate\view\View;
+use Illuminate\view\Factory;
 
 class persoonController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): view
     {
-        //
+        $personen = persoon::latest()->paginate(5);
+
+        return view('persoon.index', compact('personen'));
     }
 
     /**
